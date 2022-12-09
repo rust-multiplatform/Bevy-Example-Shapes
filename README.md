@@ -1,7 +1,5 @@
 # Rust Multi-Platform - Bevy Example: Shapes
 
-> ⚠️ THIS IS A TEMPLATE. ⚠️
-
 This project is supported by the following platforms:
 
 - ✅ Platform: Windows
