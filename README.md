@@ -181,7 +181,7 @@ Each hast their own badge.
 
 ### CI Platform: Azure DevOps
 
-[![Build Status](https://dev.azure.com/Rust-Multiplatform/Base%20Project%20Template/_apis/build/status/Base%20Project%20Template?branchName=main)](https://dev.azure.com/Rust-Multiplatform/Base%20Project%20Template/_build/latest?definitionId=1&branchName=main)
+[![Build Status](https://dev.azure.com/Rust-Multiplatform/Bevy%20Example%20Shapes/_apis/build/status/Bevy%20Example%20Shapes?branchName=main)](https://dev.azure.com/Rust-Multiplatform/Bevy%20Example%20Shapes/_build/latest?definitionId=1&branchName=main)
 
 Azure DevOps is an amazing platform which includes not only CI/CDs (pipelines), but you can host your Git repository there too, do planning, and much more.
 The Azure Pipelines are surprisingly extensive and feature rich, next to GitHub definitely a good choice!
