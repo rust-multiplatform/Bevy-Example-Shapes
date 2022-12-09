@@ -1,7 +1,7 @@
 # Platform: WebAssembly
 
-[![Rust](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_webassembly.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_webassembly.yml)
-[![codecov](https://codecov.io/gh/rust-multiplatform/Bevy-Template/branch/main/graph/badge.svg?token=XpGvuQVirP)](https://codecov.io/gh/rust-multiplatform/Bevy-Template)
+[![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_webassembly.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_webassembly.yml)
+[![codecov](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes/branch/main/graph/badge.svg?token=XpGvuQVirP)](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes)
 
 This is the platform-specific project for the platform WebAssembly.  
 Make sure to check the shared crate as we depend on it.

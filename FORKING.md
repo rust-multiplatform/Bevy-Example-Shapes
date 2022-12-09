@@ -1,6 +1,6 @@
 # How to properly 'fork' this template/example?
 
-We have a [base template/example](https://github.com/rust-multiplatform/Bevy-Template).  
+We have a [base template/example](https://github.com/rust-multiplatform/Bevy-Example-Shapes).  
 In it, we defined the basics of our projects to keep them uniform across all other examples/templates, as well as developer tools like CI's (Continuous Integrations).
 
 When using this example/template, we want to ensure that everyone is up-to-date and secure.
@@ -11,7 +11,7 @@ However, there is a way around this issue.
 
 ## Normal forking (works just once per namespace)
 
-On GitHub on our [base template/example](https://github.com/rust-multiplatform/Bevy-Template) at the top right corner is a "Fork" button.
+On GitHub on our [base template/example](https://github.com/rust-multiplatform/Bevy-Example-Shapes) at the top right corner is a "Fork" button.
 Simply press that, give your new repository a name and select the namespace and done.  
 You've just forked our repository!
 Every time we update the base repository, you will find a banner and button on your forked repository stating that the base got updated and that you can merge it into your fork.
@@ -33,7 +33,7 @@ First, we need to create a full copy (mirror) of the base:
 
 1. Create a new empty repository in the namespace you want it to be in _or_ have an existing repository.
 2. Clone your repository normally (`git clone <your git url> <folder name>`)
-3. Add a secondary remote commonly called `upstream` with the base project url: `git remote add upstream https://github.com/rust-multiplatform/Bevy-Template`
+3. Add a secondary remote commonly called `upstream` with the base project url: `git remote add upstream https://github.com/rust-multiplatform/Bevy-Example-Shapes`
 4. Now, using `git fetch --all` (or `git fetch upstream`) will update your mirror repository with the base projects changes.
 5. With `git pull upstream (<branch>)` you can pull the changes from the base repository. This will automatically start a merge and may prompt you with merge conflicts if you've changed any of the files. Resolve those, commit the merge and you are done updating your fork/mirror!
 

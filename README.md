@@ -1,4 +1,4 @@
-# Rust Multi-Platform: Bevy Template
+# Rust Multi-Platform - Bevy Example: Shapes
 
 > ⚠️ THIS IS A TEMPLATE. ⚠️
 
@@ -37,17 +37,17 @@ To best utilize the [Bevy Engine](https://bevyengine.org/) follow [their guide](
 
 ## Project layout
 
-| Folder                                         | Description                                                                                                                         | GitHub Actions                                                                                                                                                                                                      | Coverage                                                                                                                                                                  |
-| ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ./                                             | Workspace root; `Cargo.toml` contains all project folders (internal crates)                                                         |                                                                                                                                                                                                                     |                                                                                                                                                                           |  |
-| [platform/](platform/)                         | Platform projects root. Contains every platform this demonstration is supported on incl. instructions on how to build and use them. |                                                                                                                                                                                                                     |                                                                                                                                                                           |
-| [platform/android/](platform/android/)         | Contains the Android platform project and instructions on how to build this project for Android and run it.                         | [![Rust](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_android.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_android.yml)         | [![codecov](https://codecov.io/gh/rust-multiplatform/Bevy-Template/branch/main/graph/badge.svg?token=XpGvuQVirP)](https://codecov.io/gh/rust-multiplatform/Bevy-Template) |
-| [platform/ios/](platform/ios/)                 | Contains the iOS platform project and instructions on how to build this project for iOS and run it.                                 | [![Rust](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_ios.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_ios.yml)                 | [![codecov](https://codecov.io/gh/rust-multiplatform/Bevy-Template/branch/main/graph/badge.svg?token=XpGvuQVirP)](https://codecov.io/gh/rust-multiplatform/Bevy-Template) |
-| [platform/linux/](platform/linux/)             | Contains the Linux platform project and instructions on how to build this project for Linux and run it.                             | [![Rust](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_linux.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_linux.yml)             | [![codecov](https://codecov.io/gh/rust-multiplatform/Bevy-Template/branch/main/graph/badge.svg?token=XpGvuQVirP)](https://codecov.io/gh/rust-multiplatform/Bevy-Template) |
-| [platform/macos/](platform/macos/)             | Contains the macOS platform project and instructions on how to build this project for macOS and run it.                             | [![Rust](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_macos.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_macos.yml)             | [![codecov](https://codecov.io/gh/rust-multiplatform/Bevy-Template/branch/main/graph/badge.svg?token=XpGvuQVirP)](https://codecov.io/gh/rust-multiplatform/Bevy-Template) |
-| [platform/windows/](platform/windows/)         | Contains the Windows platform project and instructions on how to build this project for Windows and run it.                         | [![Rust](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_windows.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_windows.yml)         | [![codecov](https://codecov.io/gh/rust-multiplatform/Bevy-Template/branch/main/graph/badge.svg?token=XpGvuQVirP)](https://codecov.io/gh/rust-multiplatform/Bevy-Template) |
-| [platform/webassembly/](platform/webassembly/) | Contains the WebAssembly platform project and instructions on how to build this project for Websites and run it.                    | [![Rust](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_webassembly.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_webassembly.yml) | [![codecov](https://codecov.io/gh/rust-multiplatform/Bevy-Template/branch/main/graph/badge.svg?token=XpGvuQVirP)](https://codecov.io/gh/rust-multiplatform/Bevy-Template) |
-| [shared/](shared/)                             | Contains the **shared** code between **all** projects.                                                                              | [![Rust](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/shared.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/shared.yml)                             | [![codecov](https://codecov.io/gh/rust-multiplatform/Bevy-Template/branch/main/graph/badge.svg?token=XpGvuQVirP)](https://codecov.io/gh/rust-multiplatform/Bevy-Template) |
+| Folder                                         | Description                                                                                                                         | GitHub Actions                                                                                                                                                                                                                  | Coverage                                                                                                                                                                              |
+| ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ./                                             | Workspace root; `Cargo.toml` contains all project folders (internal crates)                                                         |                                                                                                                                                                                                                                 |                                                                                                                                                                                       |  |
+| [platform/](platform/)                         | Platform projects root. Contains every platform this demonstration is supported on incl. instructions on how to build and use them. |                                                                                                                                                                                                                                 |                                                                                                                                                                                       |
+| [platform/android/](platform/android/)         | Contains the Android platform project and instructions on how to build this project for Android and run it.                         | [![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_android.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_android.yml)         | [![codecov](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes/branch/main/graph/badge.svg?token=XpGvuQVirP)](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes) |
+| [platform/ios/](platform/ios/)                 | Contains the iOS platform project and instructions on how to build this project for iOS and run it.                                 | [![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_ios.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_ios.yml)                 | [![codecov](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes/branch/main/graph/badge.svg?token=XpGvuQVirP)](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes) |
+| [platform/linux/](platform/linux/)             | Contains the Linux platform project and instructions on how to build this project for Linux and run it.                             | [![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_linux.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_linux.yml)             | [![codecov](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes/branch/main/graph/badge.svg?token=XpGvuQVirP)](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes) |
+| [platform/macos/](platform/macos/)             | Contains the macOS platform project and instructions on how to build this project for macOS and run it.                             | [![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_macos.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_macos.yml)             | [![codecov](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes/branch/main/graph/badge.svg?token=XpGvuQVirP)](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes) |
+| [platform/windows/](platform/windows/)         | Contains the Windows platform project and instructions on how to build this project for Windows and run it.                         | [![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_windows.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_windows.yml)         | [![codecov](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes/branch/main/graph/badge.svg?token=XpGvuQVirP)](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes) |
+| [platform/webassembly/](platform/webassembly/) | Contains the WebAssembly platform project and instructions on how to build this project for Websites and run it.                    | [![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_webassembly.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_webassembly.yml) | [![codecov](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes/branch/main/graph/badge.svg?token=XpGvuQVirP)](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes) |
+| [shared/](shared/)                             | Contains the **shared** code between **all** projects.                                                                              | [![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/shared.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/shared.yml)                             | [![codecov](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes/branch/main/graph/badge.svg?token=XpGvuQVirP)](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes) |
 
 > Note that some pipelines don't cover all platforms/projects, but are building a specific project like `platform_linux`.
 
@@ -169,12 +169,12 @@ This is done to save on build costs/minutes.
 
 ### CI Platform: GitHub Actions
 
-[![Rust](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_android.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_android.yml)
-[![Rust](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_ios.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_ios.yml)
-[![Rust](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_linux.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_linux.yml)
-[![Rust](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_macos.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_macos.yml)
-[![Rust](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_windows.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_windows.yml)
-[![Rust](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/shared.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/shared.yml)
+[![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_android.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_android.yml)
+[![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_ios.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_ios.yml)
+[![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_linux.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_linux.yml)
+[![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_macos.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_macos.yml)
+[![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_windows.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_windows.yml)
+[![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/shared.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/shared.yml)
 
 On GitHub Actions we have a workflow file per package (platforms & shared).
 Each hast their own badge.
@@ -195,13 +195,13 @@ In fact I do have private projects on there.
 On CircleCI we only support the linux platform do to restrictions with dependencies.  
 In theory, it's possible to build for every platform but is far outside of this projects scope.
 
-[![CircleCI](https://circleci.com/gh/rust-multiplatform/Bevy-Template/tree/main.svg?style=svg)](https://circleci.com/gh/rust-multiplatform/Bevy-Template/tree/main)
+[![CircleCI](https://circleci.com/gh/rust-multiplatform/Bevy-Example-Shapes/tree/main.svg?style=svg)](https://circleci.com/gh/rust-multiplatform/Bevy-Example-Shapes/tree/main)
 
 > Note that a failure here can also mean we run out of credits. Happens too often unfortunately!
 
 ### CI Platform: Travis
 
-[![Build Status](https://app.travis-ci.com/rust-multiplatform/Bevy-Template.svg?branch=main)](https://app.travis-ci.com/rust-multiplatform/Bevy-Template)
+[![Build Status](https://app.travis-ci.com/rust-multiplatform/Bevy-Example-Shapes.svg?branch=main)](https://app.travis-ci.com/rust-multiplatform/Bevy-Example-Shapes)
 
 On Travis we only build for Windows, macOS and Linux.
 Android and iOS _would_ be possible, however it requires a lot more work.
@@ -217,20 +217,20 @@ To use GitLab CI we mirror our repository from GitHub to GitLab.
 
 Currently, we are only building `platform_linux`. Other platforms should be possible.
 
-[![pipeline status](https://gitlab.com/rust-multiplatform/bevy-template/badges/main/pipeline.svg)](https://gitlab.com/rust-multiplatform/bevy-template/-/commits/main)
+[![pipeline status](https://gitlab.com/rust-multiplatform/bevy-example-shapes/badges/main/pipeline.svg)](https://gitlab.com/rust-multiplatform/bevy-example-shapes/-/commits/main)
 
 ### CI Platform: BitBucket Pipeline
 
 Unfortunately, BitBucket Pipelines don't have status badges.
 
-The pipelines are available at: [BitBucket Mirror](https://bitbucket.org/rust-multiplatform/bevy-template/)
+The pipelines are available at: [BitBucket Mirror](https://bitbucket.org/rust-multiplatform/bevy-example-shapes/)
 
 ### CI Platform: TeamCity
 
-| Pipeline | Status Badge                                                                                                                                                 |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Build    | ![TeamCity build status](https://teamcity.jetbrains.com/app/rest/builds/buildType:id:OpenSourceProjects_RustMultiplatform_BevyTemplate_Build/statusIcon.svg) |
-| Test     | ![TeamCity test status](https://teamcity.jetbrains.com/app/rest/builds/buildType:id:OpenSourceProjects_RustMultiplatform_BevyTemplate_Test/statusIcon.svg)   |
+| Pipeline | Status Badge                                                                                                                                                      |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Build    | ![TeamCity build status](https://teamcity.jetbrains.com/app/rest/builds/buildType:id:OpenSourceProjects_RustMultiplatform_BevyExampleShapes_Build/statusIcon.svg) |
+| Test     | ![TeamCity test status](https://teamcity.jetbrains.com/app/rest/builds/buildType:id:OpenSourceProjects_RustMultiplatform_BevyExampleShapes_Test/statusIcon.svg)   |
 
 To use [TeamCity](https://www.jetbrains.com/teamcity/) you either have to host your own Server, subscribe for a hosted (TeamCity Cloud) server or apply for your [OSS project being added for free](https://blog.jetbrains.com/teamcity/2016/10/hosted-teamcity-for-open-source-a-new-home/).
 
@@ -245,14 +245,14 @@ Windows builds would also be much easier if we'd have an agent for it.
 
 ### CI Platform: AppVeyor
 
-[![Build status](https://ci.appveyor.com/api/projects/status/nsffumoc868yqsrj/branch/main?svg=true)](https://ci.appveyor.com/project/Sakul6499/bevy-template/branch/main)
+[![Build status](https://ci.appveyor.com/api/projects/status/nsffumoc868yqsrj/branch/main?svg=true)](https://ci.appveyor.com/project/Sakul6499/bevy-example-shapes/branch/main)
 
 Simple pipeline to showcase the usage of Rust on AppVeyor.  
 Linux only currently, but [Windows](https://www.appveyor.com/docs/windows-images-software/) and [macOS](https://www.appveyor.com/docs/macos-images-software/) are possible.
 
 ### CI Platform: Jenkins
 
-[![Build Status](https://jenkins.sakul-flee.de/buildStatus/icon?job=github_rust_multiplatform%2FBevy-Template%2Fmain)](https://jenkins.sakul-flee.de/job/github_rust_multiplatform/job/Bevy-Template/job/main/)
+[![Build Status](https://jenkins.sakul-flee.de/buildStatus/icon?job=github_rust_multiplatform%2FBevy-Example-Shapes%2Fmain)](https://jenkins.sakul-flee.de/job/github_rust_multiplatform/job/Bevy-Example-Shapes/job/main/)
 
 [Jenkins](https://www.jenkins.io/) is another multi-purpose self-hosted CI platform.
 
@@ -264,21 +264,21 @@ The configuration file can be found under `.jenkins/Jenkinsfile` and includes bo
 A combination of [grcov](https://github.com/mozilla/grcov) and [codecov.io](https://codecov.io) is used to provide code-to-test coverage.  
 **Please note that it is impossible to reach 100% coverage on some platforms as e.g. bindgen-code (i.e. dynamically generated code / macros) is NOT covered by `grcov` and certain platform specific tools (like `cargo-apk`) generate additional code that also is NOT included in the coverage.**
 
-Test-to-Code coverage status: [![codecov](https://codecov.io/gh/rust-multiplatform/Bevy-Template/branch/main/graph/badge.svg?token=XpGvuQVirP)](https://codecov.io/gh/rust-multiplatform/Bevy-Template)
+Test-to-Code coverage status: [![codecov](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes/branch/main/graph/badge.svg?token=XpGvuQVirP)](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes)
 
 Below are several charts showing/highlighting the distribution of **all platforms**.
 
 ### Sunburst
 
-![Sunburst](https://codecov.io/gh/rust-multiplatform/Bevy-Template/branch/main/graphs/sunburst.svg?token=XpGvuQVirP)
+![Sunburst](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes/branch/main/graphs/sunburst.svg?token=XpGvuQVirP)
 
 ### Grid
 
-![Grid](https://codecov.io/gh/rust-multiplatform/Bevy-Template/branch/main/graphs/tree.svg?token=XpGvuQVirP)
+![Grid](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes/branch/main/graphs/tree.svg?token=XpGvuQVirP)
 
 ### Icicle
 
-![Icicle](https://codecov.io/gh/rust-multiplatform/Bevy-Template/branch/main/graphs/icicle.svg?token=XpGvuQVirP)
+![Icicle](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes/branch/main/graphs/icicle.svg?token=XpGvuQVirP)
 
 ## Contributing & Getting Help
 

@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <project>
   <modelVersion>4.0.0</modelVersion>
-  <name>OpenSourceProjects_RustMultiplatform_BevyTemplate Config DSL Script</name>
-  <groupId>OpenSourceProjects_RustMultiplatform_BevyTemplate</groupId>
-  <artifactId>OpenSourceProjects_RustMultiplatform_BevyTemplate_dsl</artifactId>
+  <name>OpenSourceProjects_RustMultiplatform_BevyExampleShapes Config DSL Script</name>
+  <groupId>OpenSourceProjects_RustMultiplatform_BevyExampleShapes</groupId>
+  <artifactId>OpenSourceProjects_RustMultiplatform_BevyExampleShapes_dsl</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <parent>

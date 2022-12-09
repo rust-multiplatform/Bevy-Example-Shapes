@@ -1,7 +1,7 @@
 # Platform: iOS
 
-[![Rust](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_ios.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Template/actions/workflows/platform_ios.yml)
-[![codecov](https://codecov.io/gh/rust-multiplatform/Bevy-Template/branch/main/graph/badge.svg?token=XpGvuQVirP)](https://codecov.io/gh/rust-multiplatform/Bevy-Template)
+[![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_ios.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_ios.yml)
+[![codecov](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes/branch/main/graph/badge.svg?token=XpGvuQVirP)](https://codecov.io/gh/rust-multiplatform/Bevy-Example-Shapes)
 
 This is the platform-specific project for the platform iOS.  
 Make sure to check the shared crate as we depend on it.

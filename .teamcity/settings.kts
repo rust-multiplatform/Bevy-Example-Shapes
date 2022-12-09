@@ -32,11 +32,11 @@ version = "2022.10"
 
 project {
 
-    buildType(OpenSourceProjects_RustMultiplatform_BevyTemplate_Build)
-    buildType(OpenSourceProjects_RustMultiplatform_BevyTemplate_Test)
+    buildType(OpenSourceProjects_RustMultiplatform_BevyExampleShapes_Build)
+    buildType(OpenSourceProjects_RustMultiplatform_BevyExampleShapes_Test)
 }
 
-object OpenSourceProjects_RustMultiplatform_BevyTemplate_Build : BuildType({
+object OpenSourceProjects_RustMultiplatform_BevyExampleShapes_Build : BuildType({
     id("Build")
     name = "Build"
 
@@ -79,7 +79,7 @@ object OpenSourceProjects_RustMultiplatform_BevyTemplate_Build : BuildType({
     }
 })
 
-object OpenSourceProjects_RustMultiplatform_BevyTemplate_Test : BuildType({
+object OpenSourceProjects_RustMultiplatform_BevyExampleShapes_Test : BuildType({
     id("Test")
     name = "Test"
 
