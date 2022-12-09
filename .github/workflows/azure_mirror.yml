@@ -14,6 +14,6 @@ jobs:
           submodules: recursive
       - run: git fetch --unshallow origin
       - run: git fetch --prune --all
-      - run: git push --prune "https://me:$AZURE_TOKEN@dev.azure.com/Rust-Multiplatform/Bevy%20Template/_git/Bevy%20Template" +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
+      - run: git push --prune "https://me:$AZURE_TOKEN@dev.azure.com/Rust-Multiplatform/Bevy%20Example%20Shapes/_git/Bevy%20Example%20Shapes" +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
         env:
           AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}
