@@ -14,4 +14,4 @@ all-tests = ["ui-tests"]
 crate-type = ["cdylib", "staticlib", "rlib"]
 
 [dependencies]
-bevy = "0.9"
+bevy = "0.10"
