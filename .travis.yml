@@ -26,17 +26,9 @@ before_install:
 
 # Tasks
 script:
-  # Debug
-  - cargo check --verbose --package shared
-  - cargo build --verbose --package shared
-  - cargo test --verbose --no-default-features --no-fail-fast --package shared
-  - cargo check --verbose --package platform_${TRAVIS_OS_NAME}
-  - cargo build --verbose --package platform_${TRAVIS_OS_NAME}
-  - cargo test --verbose --no-default-features --no-fail-fast --package platform_${TRAVIS_OS_NAME}
-  # Release
-  - cargo check --release --verbose --package shared
+  # Shared
   - cargo build --release --verbose --package shared
   - cargo test --release --verbose --no-default-features --no-fail-fast --package shared
-  - cargo check --release --verbose --package platform_${TRAVIS_OS_NAME}
+  # Platform
   - cargo build --release --verbose --package platform_${TRAVIS_OS_NAME}
   - cargo test --release --verbose --no-default-features --no-fail-fast --package platform_${TRAVIS_OS_NAME}

@@ -5,7 +5,7 @@ use shared::entrypoint;
 #[cfg(test)]
 mod tests;
 
-#[cfg_attr(target_os = "android", ndk_glue::main(backtrace = "on"))]
-pub fn main() {
+#[no_mangle]
+fn android_main() {
     entrypoint();
 }

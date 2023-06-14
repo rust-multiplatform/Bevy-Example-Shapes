@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Please note that this CircleCI pipeline is much different from the upstream (https://github.com/rust-multiplatform/Base-Project-Template) pipeline.
 
 version: 2.1
@@ -12,57 +13,252 @@ jobs:
   platform_linux:
     docker:
       - image: ghcr.io/rust-multiplatform/ci_image_bevy:main
+=======
+# To save on build minutes and to reduce complexity
+# we are **only** building for the current host architecture for Windows, Linux and macOS.
+# Android and iOS are exceptions here.
+#
+# We could of course add all of our target architectures
+# by simply adding the `--target <rust target>` to the build commands.
+# Alternatively, use a build matrix like we did with GitHub.
 
-    steps:
-      - checkout
-      - run: cargo --version
+version: 2.1
 
-      # Build
-      - run:
-          name: Build (debug)
-          command: cargo build --package platform_linux
-      - run:
-          name: Build (release)
-          command: cargo build --package platform_linux --release
+orbs:
+    windows: circleci/windows@5.0.0
 
-      # Tests
-      - run:
-          name: Run Tests (debug)
-          command: cargo test --no-default-features --no-fail-fast --package platform_linux
-      - run:
-          name: Run Tests (release)
-          command: cargo test --no-default-features --no-fail-fast --package platform_linux --release
+workflows:
+    build:
+        jobs:
+            - platform_linux
+            - platform_macos
+            - platform_windows
+            - platform_android
+            - platform_ios
+            - platform_webassembly
+            - shared
 
-      # Upload Artifacts
-      - store_artifacts:
-          path: target/debug/platform_linux
-      - store_artifacts:
-          path: target/release/platform_linux
+jobs:
+    platform_linux:
+        docker:
+            - image: cimg/rust:1.70
+>>>>>>> upstream/main
 
+        steps:
+            - checkout
+            - run: cargo --version
+
+            # Build
+            - run:
+                  name: Build
+                  command: cargo build --package platform_linux --release
+
+            # Tests
+            - run:
+                  name: Tests
+                  command: cargo test --no-default-features --no-fail-fast --package platform_linux --release
+
+            # Upload Artifacts
+            - store_artifacts:
+                  path: target/release/platform_linux
+
+<<<<<<< HEAD
   shared:
     docker:
       - image: ghcr.io/rust-multiplatform/ci_image_bevy:main
+=======
+    platform_macos:
+        macos:
+            xcode: 13.4.1
 
-    steps:
-      - checkout
-      - run: cargo --version
+        steps:
+            - checkout
 
-      # Build
-      - run:
-          name: Build (debug)
-          command: cargo build --package shared
-      - run:
-          name: Build (release)
-          command: cargo build --package shared --release
+            # Setup
+            - run:
+                  name: Install Rust
+                  command: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
+            - run: cargo --version
 
-      # Tests
-      - run:
-          name: Run Tests (debug)
-          command: cargo test --no-default-features --no-fail-fast --package shared
-      - run:
-          name: Run Tests (release)
-          command: cargo test --no-default-features --no-fail-fast --package shared --release
+            # Build
+            - run:
+                  name: Build
+                  command: cargo build --package platform_macos --release
 
+            # Tests
+            - run:
+                  name: Tests
+                  command: cargo test --no-default-features --no-fail-fast --package platform_macos --release
+
+            # Upload Artifacts
+            - store_artifacts:
+                  path: target/release/platform_macos
+
+    platform_windows:
+        executor:
+            name: windows/default
+
+        steps:
+            - checkout
+
+            # Setup
+            - run:
+                  name: Download RustUp
+                  command: Invoke-WebRequest https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe -OutFile rustup-init.exe
+            - run:
+                  name: Install Rust
+                  command: ./rustup-init.exe --default-toolchain stable --profile complete -y
+            - run:
+                  name: Cargo version
+                  command: |
+                      & "$HOME/.cargo/bin/cargo.exe" --version
+
+            # Build
+            - run:
+                  name: Build
+                  command: |
+                      & "$HOME/.cargo/bin/cargo.exe" build --package platform_windows --release
+                  environment:
+                      CARGO_NET_GIT_FETCH_WITH_CLI: "true"
+
+            # Tests
+            - run:
+                  name: Tests
+                  command: |
+                      & "$HOME/.cargo/bin/cargo.exe" test --no-default-features --no-fail-fast --package platform_windows --release
+                  environment:
+                      CARGO_NET_GIT_FETCH_WITH_CLI: "true"
+
+            # Upload Artifacts
+            - store_artifacts:
+                  path: target/release/platform_windows.exe
+
+    platform_android:
+        docker:
+            - image: androidsdk/android-30
+
+        steps:
+            - checkout
+
+            # Setup
+            - run:
+                  name: Install GCC
+                  command: apt-get update && apt-get install -y gcc
+            - run:
+                  name: Install Android SDKs, NDKs and tools
+                  command: sdkmanager 'platforms;android-30' 'platform-tools' 'ndk;24.0.8215888' 'build-tools;33.0.0'
+            - run:
+                  name: Install Rust
+                  command: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
+            - run: source $HOME/.cargo/env && cargo --version
+            - run:
+                  name: Install Rust targets
+                  command: source $HOME/.cargo/env && rustup target add armv7-linux-androideabi aarch64-linux-android i686-linux-android x86_64-linux-android
+            - run:
+                  name: Install cargo-apk
+                  command: source $HOME/.cargo/env && cargo install cargo-apk
+
+            # KeyStore Setup
+            - run:
+                  name: Generate Release KeyStore
+                  command: cd platform/android/.android && echo -e "android\nandroid\n\n\n\n\n\n\nyes" | keytool -genkey -v -keystore release.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000
+
+            # Build
+            - run:
+                  name: Build
+                  command: unset ANDROID_HOME && export ANDROID_NDK_ROOT="$ANDROID_SDK_ROOT/ndk/24.0.8215888" && source $HOME/.cargo/env && cargo apk build --package platform_android --release
+
+            # There are no tests we can run on android like this
+
+            # Upload Artifacts
+            - store_artifacts:
+                  path: target/release/apk/
+
+    platform_ios:
+        macos:
+            xcode: 13.4.1
+
+        steps:
+            - checkout
+
+            # Setup
+            - run:
+                  name: Install Brew
+                  command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            - run:
+                  name: Install XCodeGen
+                  command: brew install xcodegen
+            - run:
+                  name: Install JQ
+                  command: brew install jq
+            - run:
+                  name: Install Rust
+                  command: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
+            - run:
+                  name: Install Rust targets
+                  command: rustup target add x86_64-apple-ios aarch64-apple-ios aarch64-apple-ios-sim
+            - run:
+                  name: Install Cargo-XCodeBuild
+                  command: cargo install cargo-xcodebuild
+            - run: cargo --version
+
+            - run:
+                  name: Copy original Cargo.toml
+                  command: cp platform/ios/Cargo.toml platform/ios/Cargo.toml.original
+            - run:
+                  name: Available Device IDs
+                  command: xcrun simctl list devices available --json ios | jq '.devices | to_entries | map(select(.key | match(".*iOS.*"))) | map(.value)[0]'
+            - run:
+                  name: Selected Device ID
+                  command: xcrun simctl list devices available --json ios | jq '.devices | to_entries | map(select(.key | match(".*iOS.*"))) | map(.value)[0][0]'
+            - run:
+                  name: Change Device ID
+                  command: DEVICE_ID=$(xcrun simctl list devices available --json ios | jq '.devices | to_entries | map(select(.key | match(".*iOS.*"))) | map(.value)[0][0].udid'); cat platform/ios/Cargo.toml | sed "s/device_id = .*/device_id = $DEVICE_ID/g" | tee platform/ios/Cargo.toml
+            - run:
+                  name: Diff changes in Cargo.toml
+                  command: diff platform/ios/Cargo.toml platform/ios/Cargo.toml.original || true
+
+            # Build
+            - run:
+                  name: Build
+                  command: cargo xcodebuild build --package platform_ios --release
+
+            # There are no tests we can run on android like this
+
+            # Upload Artifacts
+            - store_artifacts:
+                  path: target/xcodegen/platform_ios/build/Build/Products/Release-iphonesimulator
+
+    platform_webassembly:
+        docker:
+            - image: cimg/rust:1.70
+
+        steps:
+            - checkout
+            - run: cargo --version
+
+            # Setup
+            - run:
+                  name: Install WASM-Pack
+                  command: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+            - run: wasm-pack --version
+>>>>>>> upstream/main
+
+            # Build
+            - run:
+                  name: Build
+                  command: wasm-pack build platform/webassembly/ --package platform_webassembly
+
+            # Upload
+            - store_artifacts:
+                  path: ./platform/webassembly/pkg
+
+            # Tests
+            - run:
+                  name: Run Tests
+                  command: wasm-pack test --node platform/webassembly/ --package platform_webassembly
+
+<<<<<<< HEAD
       # Upload Artifacts
       - store_artifacts:
           path: target/debug/libshare*
@@ -72,3 +268,28 @@ jobs:
           path: target/release/libshare*
       - store_artifacts:      
           path: target/release/share*
+=======
+    shared:
+        docker:
+            - image: cimg/rust:1.70
+
+        steps:
+            - checkout
+            - run: cargo --version
+
+            # Build
+            - run:
+                  name: Build
+                  command: cargo build --package shared --release
+
+            # Tests
+            - run:
+                  name: Run Tests
+                  command: cargo test --no-default-features --no-fail-fast --package shared --release
+
+            # Upload Artifacts
+            - store_artifacts:
+                  path: target/release/libshare*
+            - store_artifacts:
+                  path: target/release/share*
+>>>>>>> upstream/main
