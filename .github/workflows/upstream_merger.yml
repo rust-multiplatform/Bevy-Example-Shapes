@@ -1,0 +1,56 @@
+name: Upstream Merger
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  upstream_merger:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        repository: [rust-multiplatform/Windowing-Template, rust-multiplatform/SlintUI-Template, rust-multiplatform/Base-Engine-Library, rust-multiplatform/Bevy-Template, rust-multiplatform/Graphical-Engine-Template, rust-multiplatform/Compute-Engine-Template]
+
+    steps:
+      - name: Merge upstream
+        run: |
+          echo ">>> ${{ matrix.repository }}"
+
+          echo "> Setting git ..."
+          git config --global user.name "GitHub CI"
+          git config --global user.email "dev@sakul-flee.de"
+          git config --global pull.rebase false
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/key
+          chmod 0700 ~/.ssh
+          chmod 0600 ~/.ssh/key
+          eval `ssh-agent -s`
+          ssh-add ~/.ssh/key
+          
+          echo "> Clone repository"
+          git clone --recursive git@github.com:${{ matrix.repository }} ${{ matrix.repository }}
+          cd '${{ matrix.repository }}'
+          git checkout main
+          git pull origin main
+          
+          echo "> Adding upstream"
+          git remote add upstream https://github.com/rust-multiplatform/Base-Project-Template
+
+          echo "> Fetching ..."
+          git fetch --all
+
+          echo "> Creating merge branch"
+          git checkout -b upstream || true
+          git switch upstream
+
+          echo "> Merging ..."
+          git merge upstream/main origin/upstream || true
+
+          echo "> Pushing ..."
+          git add . || true
+          git commit -m "Upstream merge ($(date +%d.%m.%Y_%H:%M:%S))" || true
+          git push origin upstream

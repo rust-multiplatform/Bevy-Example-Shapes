@@ -14,4 +14,11 @@ all-tests = ["ui-tests"]
 crate-type = ["cdylib", "staticlib", "rlib"]
 
 [dependencies]
+<<<<<<< HEAD
 bevy = "0.9"
+=======
+winit = "0.28"
+
+[target.'cfg(target_os = "android")'.dependencies]
+winit = { version = "0.28", features = ["android-native-activity"] }
+>>>>>>> upstream/main

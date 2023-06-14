@@ -17,7 +17,11 @@ crate-type = ["cdylib", "rlib"]
 # Internal
 shared = { path = "../../shared" }
 # External
+<<<<<<< HEAD
 wasm-bindgen = "0.2.83"
+=======
+wasm-bindgen = "0.2.87"
+>>>>>>> upstream/main
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3"

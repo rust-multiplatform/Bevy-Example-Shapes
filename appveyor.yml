@@ -4,14 +4,8 @@ install:
   - sh: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
   - sh: source "$HOME/.cargo/env"
 
-before_build:
-  - sh: cargo check
-  - sh: cargo check --release
-
 build_script:
-  - sh: cargo build
   - sh: cargo build --release
 
 after_build:
-  - sh: cargo test
   - sh: cargo test --release

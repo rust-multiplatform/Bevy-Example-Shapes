@@ -4,19 +4,13 @@ pipelines:
   default:
     - parallel:
         - step:
-            name: check
-            script:
-              - rustc --version && cargo --version  # Print version info for debugging
-              - cargo check --verbose --package platform_linux
-
-        - step:
             name: build
             script:
-              - rustc --version && cargo --version  # Print version info for debugging
-              - cargo build --verbose --package platform_linux
+              - rustc --version && cargo --version # Print version information
+              - cargo build --verbose --release --package platform_linux
 
         - step:
             name: test
             script:
-              - rustc --version && cargo --version  # Print version info for debugging
-              - cargo test --verbose --no-default-features --no-fail-fast --package platform_linux
+              - rustc --version && cargo --version # Print version info
+              - cargo test --verbose --release --no-default-features --no-fail-fast --package platform_linux

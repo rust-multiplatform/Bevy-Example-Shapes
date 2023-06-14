@@ -31,9 +31,14 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 version = "2022.10"
 
 project {
+<<<<<<< HEAD
 
     buildType(OpenSourceProjects_RustMultiplatform_BevyExampleShapes_Build)
     buildType(OpenSourceProjects_RustMultiplatform_BevyExampleShapes_Test)
+=======
+    buildType(Test)
+    buildType(Build)
+>>>>>>> upstream/main
 }
 
 object OpenSourceProjects_RustMultiplatform_BevyExampleShapes_Build : BuildType({
@@ -42,9 +47,10 @@ object OpenSourceProjects_RustMultiplatform_BevyExampleShapes_Build : BuildType(
 
     vcs {
         root(DslContext.settingsRoot)
-    }
+    } 
 
     steps {
+<<<<<<< HEAD
         dockerCommand {
             name = "Build Docker Image"
             commandType = build {
@@ -65,6 +71,20 @@ object OpenSourceProjects_RustMultiplatform_BevyExampleShapes_Build : BuildType(
             """.trimIndent()
             dockerImage = "bevy_ci_image:latest"
             dockerImagePlatform = ScriptBuildStep.ImagePlatform.Linux
+=======
+        step {
+            name = "Build"
+            type = "cargo"
+            executionMode = BuildStep.ExecutionMode.RUN_ON_FAILURE
+            param("cargo-build-package", "platform_linux")
+            param("cargo-build-release", "true")
+            param("cargo-test-no-default-features", "true")
+            param("cargo-toolchain", "stable")
+            param("cargo-verbosity", "--verbose")
+            param("cargo-bench-package", "platform_linux")
+            param("cargo-bench-arguments", "--release")
+            param("cargo-command", "build")
+>>>>>>> upstream/main
         }
     }
 
@@ -88,6 +108,7 @@ object OpenSourceProjects_RustMultiplatform_BevyExampleShapes_Test : BuildType({
     }
 
     steps {
+<<<<<<< HEAD
         dockerCommand {
             name = "Build Docker Image"
             commandType = build {
@@ -108,6 +129,19 @@ object OpenSourceProjects_RustMultiplatform_BevyExampleShapes_Test : BuildType({
             """.trimIndent()
             dockerImage = "bevy_ci_image:latest"
             dockerImagePlatform = ScriptBuildStep.ImagePlatform.Linux
+=======
+        step {
+            name = "Tests"
+            type = "cargo"
+            executionMode = BuildStep.ExecutionMode.RUN_ON_FAILURE
+            param("cargo-test-no-fail-fast", "true")
+            param("cargo-test-package", "platform_linux")
+            param("cargo-test-no-default-features", "true")
+            param("cargo-toolchain", "stable")
+            param("cargo-verbosity", "--verbose")
+            param("cargo-test-release", "true")
+            param("cargo-command", "test")
+>>>>>>> upstream/main
         }
     }
 

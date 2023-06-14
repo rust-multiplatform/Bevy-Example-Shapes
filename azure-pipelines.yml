@@ -1,54 +1,15 @@
 stages:
   - stage: Linux
     dependsOn: [] # Clears dependencies and allows parallel execution
-    pool: 
+    pool:
       vmImage: ubuntu-latest
     jobs:
-      - job: Cargo_Check_Debug
+      - job: Build
         dependsOn: []
         steps:
           - bash: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
             displayName: Install Rust
-          
-          - bash: rustc --version && cargo --version
-            displayName: Print Rust & Cargo versions
 
-          - bash: cargo check --verbose --package platform_linux
-            displayName: Cargo Check (Debug)
-
-      - job: Cargo_Check_Release
-        dependsOn: []
-        steps:
-          - bash: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
-            displayName: Install Rust
-          
-          - bash: rustc --version && cargo --version
-            displayName: Print Rust & Cargo versions
-
-          - bash: cargo check --verbose --package platform_linux --release
-            displayName: Cargo Check (Release)
-
-      - job: Cargo_Build_Debug
-        dependsOn: []
-        steps:
-          - bash: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
-            displayName: Install Rust
-          
-          - bash: rustc --version && cargo --version
-            displayName: Print Rust & Cargo versions
-
-          - bash: cargo build --verbose --package platform_linux
-            displayName: Cargo Build (Debug)
-          
-          - publish: target/
-            artifact: Upload Linux Artifacts (Debug)
-
-      - job: Cargo_Build_Release
-        dependsOn: []
-        steps:
-          - bash: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
-            displayName: Install Rust
-          
           - bash: rustc --version && cargo --version
             displayName: Print Rust & Cargo versions
 
@@ -58,38 +19,24 @@ stages:
           - publish: target/
             artifact: Upload Linux Artifacts (Release)
 
-      - job: Cargo_Test_Debug
+      - job: Test
         dependsOn: []
         steps:
           - bash: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
             displayName: Install Rust
-          
-          - bash: rustc --version && cargo --version
-            displayName: Print Rust & Cargo versions
 
-          - bash: cargo test --verbose --no-default-features --no-fail-fast --package platform_linux
-            displayName: Cargo Test (Debug)
-
-      - job: Cargo_Test_Release
-        dependsOn: []
-        steps:
-          - bash: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
-            displayName: Install Rust
-          
           - bash: rustc --version && cargo --version
             displayName: Print Rust & Cargo versions
 
           - bash: cargo test --verbose --no-default-features --no-fail-fast --package platform_linux --release
             displayName: Cargo Test (Release)
 
-
-
   - stage: Windows
     dependsOn: [] # Clears dependencies and allows parallel execution
-    pool: 
+    pool:
       vmImage: windows-latest
     jobs:
-      - job: Cargo_Check_Debug
+      - job: Build
         dependsOn: []
         steps:
           - pwsh: Invoke-WebRequest https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe -OutFile rustup-init.exe
@@ -97,65 +44,17 @@ stages:
 
           - pwsh: ./rustup-init.exe --default-toolchain stable --profile complete -y
             displayName: Install Rust
-          
+
           - pwsh: rustc --version && cargo --version
             displayName: Print Rust & Cargo versions
-            
-          - pwsh: cargo check --verbose --package platform_windows
-            displayName: Cargo Check (Debug)
 
-      - job: Cargo_Check_Release
-        dependsOn: []
-        steps:
-          - pwsh: Invoke-WebRequest https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe -OutFile rustup-init.exe
-            displayName: Download Rustup
-
-          - pwsh: ./rustup-init.exe --default-toolchain stable --profile complete -y
-            displayName: Install Rust
-          
-          - pwsh: rustc --version && cargo --version
-            displayName: Print Rust & Cargo versions
-            
-          - pwsh: cargo check --verbose --package platform_windows --release
-            displayName: Cargo Check (Release)
-
-      - job: Cargo_Build_Debug
-        dependsOn: []
-        steps:
-          - pwsh: Invoke-WebRequest https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe -OutFile rustup-init.exe
-            displayName: Download Rustup
-
-          - pwsh: ./rustup-init.exe --default-toolchain stable --profile complete -y
-            displayName: Install Rust
-          
-          - pwsh: rustc --version && cargo --version
-            displayName: Print Rust & Cargo versions
-            
-          - pwsh: cargo build --verbose --package platform_windows
-            displayName: Cargo Build (Debug)
-
-          - publish: target/
-            artifact: Upload Windows Artifacts (Debug)
-
-      - job: Cargo_Build_Release
-        dependsOn: []
-        steps:
-          - pwsh: Invoke-WebRequest https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe -OutFile rustup-init.exe
-            displayName: Download Rustup
-
-          - pwsh: ./rustup-init.exe --default-toolchain stable --profile complete -y
-            displayName: Install Rust
-          
-          - pwsh: rustc --version && cargo --version
-            displayName: Print Rust & Cargo versions
-            
           - pwsh: cargo build --verbose --package platform_windows --release
             displayName: Cargo Build (Release)
 
           - publish: target/
             artifact: Upload Windows Artifacts (Release)
 
-      - job: Cargo_Test_Debug
+      - job: Test
         dependsOn: []
         steps:
           - pwsh: Invoke-WebRequest https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe -OutFile rustup-init.exe
@@ -163,80 +62,24 @@ stages:
 
           - pwsh: ./rustup-init.exe --default-toolchain stable --profile complete -y
             displayName: Install Rust
-          
+
           - pwsh: rustc --version && cargo --version
             displayName: Print Rust & Cargo versions
-            
-          - pwsh: cargo test --verbose --no-default-features --no-fail-fast --package platform_windows
-            displayName: Cargo Test (Debug)
 
-      - job: Cargo_Test_Release
-        dependsOn: []
-        steps:
-          - pwsh: Invoke-WebRequest https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe -OutFile rustup-init.exe
-            displayName: Download Rustup
-
-          - pwsh: ./rustup-init.exe --default-toolchain stable --profile complete -y
-            displayName: Install Rust
-          
-          - pwsh: rustc --version && cargo --version
-            displayName: Print Rust & Cargo versions
-            
           - pwsh: cargo test --verbose --no-default-features --no-fail-fast --package platform_windows --release
             displayName: Cargo Test (Release)
 
-
-
   - stage: macOS
     dependsOn: [] # Clears dependencies and allows parallel execution
-    pool: 
+    pool:
       vmImage: macos-latest
     jobs:
-      - job: Cargo_Check_Debug
+      - job: Build
         dependsOn: []
         steps:
           - bash: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
             displayName: Install Rust
-          
-          - bash: rustc --version && cargo --version
-            displayName: Print Rust & Cargo versions
 
-          - bash: cargo check --verbose --package platform_macos
-            displayName: Cargo Check (Debug)
-
-      - job: Cargo_Check_Release
-        dependsOn: []
-        steps:
-          - bash: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
-            displayName: Install Rust
-          
-          - bash: rustc --version && cargo --version
-            displayName: Print Rust & Cargo versions
-
-          - bash: cargo check --verbose --package platform_macos --release
-            displayName: Cargo Check (Release)
-
-      - job: Cargo_Build_Debug
-        dependsOn: []
-        steps:
-          - bash: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
-            displayName: Install Rust
-          
-          - bash: rustc --version && cargo --version
-            displayName: Print Rust & Cargo versions
-
-          - bash: cargo build --verbose --package platform_macos
-            displayName: Cargo Build (Debug)
-            
-          - publish: target/
-            artifact: Upload macOS Artifacts (Debug)
-
-      - job: Cargo_Build_Release
-        dependsOn: []
-        steps:
-          - bash: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
-            displayName: Install Rust
-          
           - bash: rustc --version && cargo --version
             displayName: Print Rust & Cargo versions
 
@@ -246,43 +89,29 @@ stages:
           - publish: target/
             artifact: Upload macOS Artifacts (Release)
 
-      - job: Cargo_Test_Debug
+      - job: Test
         dependsOn: []
         steps:
           - bash: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
             displayName: Install Rust
-          
-          - bash: rustc --version && cargo --version
-            displayName: Print Rust & Cargo versions
 
-          - bash: cargo test --verbose --no-default-features --no-fail-fast --package platform_macos
-            displayName: Cargo Test (Debug)
-
-      - job: Cargo_Test_Release
-        dependsOn: []
-        steps:
-          - bash: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
-            displayName: Install Rust
-          
           - bash: rustc --version && cargo --version
             displayName: Print Rust & Cargo versions
 
           - bash: cargo test --verbose --no-default-features --no-fail-fast --package platform_macos --release
             displayName: Cargo Test (Release)
 
-
-
   - stage: iOS
     dependsOn: macOS
-    pool: 
+    pool:
       vmImage: macos-latest
     jobs:
-      - job: Cargo_Check_Debug
-        dependsOn: [] 
+      - job: Build
+        dependsOn: []
         steps:
           - bash: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
             displayName: Install Rust
-          
+
           - bash: rustc --version && cargo --version
             displayName: Print Rust & Cargo versions
 
@@ -291,7 +120,7 @@ stages:
 
           - bash: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
             displayName: Install brew.sh
-          
+
           - bash: brew install xcodegen
             displayName: Install XCodeGen
 
@@ -309,127 +138,7 @@ stages:
 
           - bash: DEVICE_ID=$(xcrun simctl list devices available --json ios | jq '.devices | to_entries | map(select(.key | match(".*iOS.*"))) | map(.value)[0][0].udid'); cat platform/ios/Cargo.toml | sed "s/device_id = .*/device_id = $DEVICE_ID/g" | tee platform/ios/Cargo.toml
             displayName: Change Device ID
-              
-          - bash: diff platform/ios/Cargo.toml platform/ios/Cargo.toml.original || true
-            displayName: Diff changes in Cargo.toml
 
-          - bash: cargo xcodebuild check --verbose --package platform_ios
-            displayName: Cargo Check (Debug)
-
-      - job: Cargo_Check_Release
-        dependsOn: [] 
-        steps:
-          - bash: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
-            displayName: Install Rust
-          
-          - bash: rustc --version && cargo --version
-            displayName: Print Rust & Cargo versions
-
-          - bash: rustup target add x86_64-apple-ios aarch64-apple-ios aarch64-apple-ios-sim
-            displayName: Install Rust targets
-
-          - bash: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-            displayName: Install brew.sh
-          
-          - bash: brew install xcodegen
-            displayName: Install XCodeGen
-
-          - bash: cargo install cargo-xcodebuild
-            displayName: Install XCodeBuild
-
-          - bash: cp platform/ios/Cargo.toml platform/ios/Cargo.toml.original
-            displayName: Copy original Cargo.toml
-
-          - bash: xcrun simctl list devices available --json ios | jq '.devices | to_entries | map(select(.key | match(".*iOS.*"))) | map(.value)[0]'
-            displayName: Available Device IDs
-
-          - bash: xcrun simctl list devices available --json ios | jq '.devices | to_entries | map(select(.key | match(".*iOS.*"))) | map(.value)[0][0]'
-            displayName: Selected Device ID
-
-          - bash: DEVICE_ID=$(xcrun simctl list devices available --json ios | jq '.devices | to_entries | map(select(.key | match(".*iOS.*"))) | map(.value)[0][0].udid'); cat platform/ios/Cargo.toml | sed "s/device_id = .*/device_id = $DEVICE_ID/g" | tee platform/ios/Cargo.toml
-            displayName: Change Device ID
-              
-          - bash: diff platform/ios/Cargo.toml platform/ios/Cargo.toml.original || true
-            displayName: Diff changes in Cargo.toml
-
-          - bash: cargo xcodebuild check --verbose --package platform_ios --release
-            displayName: Cargo Check (Release)
-
-      - job: Cargo_Build_Debug
-        dependsOn: [] 
-        steps:
-          - bash: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
-            displayName: Install Rust
-          
-          - bash: rustc --version && cargo --version
-            displayName: Print Rust & Cargo versions
-
-          - bash: rustup target add x86_64-apple-ios aarch64-apple-ios aarch64-apple-ios-sim
-            displayName: Install Rust targets
-
-          - bash: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-            displayName: Install brew.sh
-          
-          - bash: brew install xcodegen
-            displayName: Install XCodeGen
-
-          - bash: cargo install cargo-xcodebuild
-            displayName: Install XCodeBuild
-
-          - bash: cp platform/ios/Cargo.toml platform/ios/Cargo.toml.original
-            displayName: Copy original Cargo.toml
-
-          - bash: xcrun simctl list devices available --json ios | jq '.devices | to_entries | map(select(.key | match(".*iOS.*"))) | map(.value)[0]'
-            displayName: Available Device IDs
-
-          - bash: xcrun simctl list devices available --json ios | jq '.devices | to_entries | map(select(.key | match(".*iOS.*"))) | map(.value)[0][0]'
-            displayName: Selected Device ID
-
-          - bash: DEVICE_ID=$(xcrun simctl list devices available --json ios | jq '.devices | to_entries | map(select(.key | match(".*iOS.*"))) | map(.value)[0][0].udid'); cat platform/ios/Cargo.toml | sed "s/device_id = .*/device_id = $DEVICE_ID/g" | tee platform/ios/Cargo.toml
-            displayName: Change Device ID
-              
-          - bash: diff platform/ios/Cargo.toml platform/ios/Cargo.toml.original || true
-            displayName: Diff changes in Cargo.toml
-
-          - bash: cargo xcodebuild build --verbose --package platform_ios
-            displayName: Cargo Build (Debug)
-
-          - publish: target/
-            artifact: Upload iOS Artifacts (Debug)
-
-      - job: Cargo_Build_Release
-        dependsOn: [] 
-        steps:
-          - bash: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
-            displayName: Install Rust
-          
-          - bash: rustc --version && cargo --version
-            displayName: Print Rust & Cargo versions
-
-          - bash: rustup target add x86_64-apple-ios aarch64-apple-ios aarch64-apple-ios-sim
-            displayName: Install Rust targets
-
-          - bash: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-            displayName: Install brew.sh
-          
-          - bash: brew install xcodegen
-            displayName: Install XCodeGen
-
-          - bash: cargo install cargo-xcodebuild
-            displayName: Install XCodeBuild
-
-          - bash: cp platform/ios/Cargo.toml platform/ios/Cargo.toml.original
-            displayName: Copy original Cargo.toml
-
-          - bash: xcrun simctl list devices available --json ios | jq '.devices | to_entries | map(select(.key | match(".*iOS.*"))) | map(.value)[0]'
-            displayName: Available Device IDs
-
-          - bash: xcrun simctl list devices available --json ios | jq '.devices | to_entries | map(select(.key | match(".*iOS.*"))) | map(.value)[0][0]'
-            displayName: Selected Device ID
-
-          - bash: DEVICE_ID=$(xcrun simctl list devices available --json ios | jq '.devices | to_entries | map(select(.key | match(".*iOS.*"))) | map(.value)[0][0].udid'); cat platform/ios/Cargo.toml | sed "s/device_id = .*/device_id = $DEVICE_ID/g" | tee platform/ios/Cargo.toml
-            displayName: Change Device ID
-              
           - bash: diff platform/ios/Cargo.toml platform/ios/Cargo.toml.original || true
             displayName: Diff changes in Cargo.toml
 
@@ -439,19 +148,17 @@ stages:
           - publish: target/
             artifact: Upload iOS Artifacts (Release)
 
-
-
   - stage: Android
     dependsOn: Linux
-    pool: 
+    pool:
       vmImage: ubuntu-latest
     jobs:
-      - job: Cargo_Check_Debug
+      - job: Build
         dependsOn: []
         steps:
           - bash: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
             displayName: Install Rust
-          
+
           - bash: rustc --version && cargo --version
             displayName: Print Rust & Cargo versions
 
@@ -460,7 +167,7 @@ stages:
             displayName: Generate Debug KeyStore
           - bash: cd platform/android/.android && echo -e "android\nandroid\n\n\n\n\n\n\nyes" | keytool -genkey -v -keystore release.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000
             displayName: Generate Release KeyStore
-          
+
           - bash: cargo install cargo-apk
             displayName: Install Cargo-APK
 
@@ -476,157 +183,32 @@ stages:
           - bash: rustup target add armv7-linux-androideabi
             displayName: Install Rust target armv7-linux-androideabi
 
-          - bash: cargo apk check --package platform_android
-            displayName: Cargo Check (Debug)
-
-      - job: Cargo_Check_Release
-        dependsOn: []
-        steps:
-          - bash: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
-            displayName: Install Rust
-          
-          - bash: rustc --version && cargo --version
-            displayName: Print Rust & Cargo versions
-
-          # KeyStore Setup
-          - bash: cd platform/android/.android && echo -e "android\nandroid\n\n\n\n\n\n\nyes" | keytool -genkey -v -keystore debug.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000
-            displayName: Generate Debug KeyStore
-          - bash: cd platform/android/.android && echo -e "android\nandroid\n\n\n\n\n\n\nyes" | keytool -genkey -v -keystore release.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000
-            displayName: Generate Release KeyStore
-
-          - bash: cargo install cargo-apk
-            displayName: Install Cargo-APK
-
-          - bash: rustup target add x86_64-linux-android
-            displayName: Install Rust target x86_64-linux-android
-            
-          - bash: rustup target add aarch64-linux-android
-            displayName: Install Rust target aarch64-linux-android
-            
-          - bash: rustup target add i686-linux-android
-            displayName: Install Rust target i686-linux-android
-            
-          - bash: rustup target add armv7-linux-androideabi
-            displayName: Install Rust target armv7-linux-androideabi
-            
-          - bash: cargo apk check --package platform_android --release
-            displayName: Cargo Check (Release)
-
-      - job: Cargo_Build_Debug
-        dependsOn: []
-        steps:
-          - bash: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
-            displayName: Install Rust
-          
-          - bash: rustc --version && cargo --version
-            displayName: Print Rust & Cargo versions
-
-          # KeyStore Setup
-          - bash: cd platform/android/.android && echo -e "android\nandroid\n\n\n\n\n\n\nyes" | keytool -genkey -v -keystore debug.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000
-            displayName: Generate Debug KeyStore
-          - bash: cd platform/android/.android && echo -e "android\nandroid\n\n\n\n\n\n\nyes" | keytool -genkey -v -keystore release.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000
-            displayName: Generate Release KeyStore
-
-          - bash: cargo install cargo-apk
-            displayName: Install Cargo-APK
-
-          - bash: rustup target add x86_64-linux-android
-            displayName: Install Rust target x86_64-linux-android
-            
-          - bash: rustup target add aarch64-linux-android
-            displayName: Install Rust target aarch64-linux-android
-            
-          - bash: rustup target add i686-linux-android
-            displayName: Install Rust target i686-linux-android
-            
-          - bash: rustup target add armv7-linux-androideabi
-            displayName: Install Rust target armv7-linux-androideabi
-            
-          - bash: cargo apk build --package platform_android
-            displayName: Cargo Build (Debug)
-          
-          - publish: target/
-            artifact: Upload Android Artifacts (Debug)
-
-      - job: Cargo_Build_Release
-        dependsOn: []
-        steps:
-          - bash: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
-            displayName: Install Rust
-          
-          - bash: rustc --version && cargo --version
-            displayName: Print Rust & Cargo versions
-
-          # KeyStore Setup
-          - bash: cd platform/android/.android && echo -e "android\nandroid\n\n\n\n\n\n\nyes" | keytool -genkey -v -keystore debug.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000
-            displayName: Generate Debug KeyStore
-          - bash: cd platform/android/.android && echo -e "android\nandroid\n\n\n\n\n\n\nyes" | keytool -genkey -v -keystore release.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000
-            displayName: Generate Release KeyStore
-
-          - bash: cargo install cargo-apk
-            displayName: Install Cargo-APK
-
-          - bash: rustup target add x86_64-linux-android
-            displayName: Install Rust target x86_64-linux-android
-            
-          - bash: rustup target add aarch64-linux-android
-            displayName: Install Rust target aarch64-linux-android
-            
-          - bash: rustup target add i686-linux-android
-            displayName: Install Rust target i686-linux-android
-            
-          - bash: rustup target add armv7-linux-androideabi
-            displayName: Install Rust target armv7-linux-androideabi
-            
           - bash: cargo apk build --package platform_android --release
             displayName: Cargo Build (Release)
 
           - publish: target/
             artifact: Upload Android Artifacts (Release)
 
-
-
   - stage: WebAssembly
     dependsOn: Linux
-    pool: 
+    pool:
       vmImage: ubuntu-latest
     jobs:
-      - job: Cargo_Build_Debug
+      - job: Build
         dependsOn: []
         steps:
           - bash: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
             displayName: Install Rust
-          
+
           - bash: rustc --version && cargo --version
             displayName: Print Rust & Cargo versions
 
-          - bash: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh 
+          - bash: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
             displayName: Install WASM-Pack
 
           - bash: wasm-pack --version
             displayName: Wasm-Pack version
-            
-          - bash: wasm-pack build --dev platform/webassembly/ --package platform_webassembly
-            displayName: Wasm-Pack Build (Debug)
-          
-          - publish: ./platform/webassembly/pkg
-            artifact: Upload WebAssembly Artifacts (Debug)
 
-      - job: Cargo_Build_Release
-        dependsOn: []
-        steps:
-          - bash: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile complete -y
-            displayName: Install Rust
-          
-          - bash: rustc --version && cargo --version
-            displayName: Print Rust & Cargo versions
-
-          - bash: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh 
-            displayName: Install WASM-Pack
-
-          - bash: wasm-pack --version
-            displayName: Wasm-Pack version
-            
           - bash: wasm-pack build  platform/webassembly/ --package platform_webassembly
             displayName: Wasm-Pack Build (Release)
 
