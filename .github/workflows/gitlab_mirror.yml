@@ -14,6 +14,6 @@ jobs:
           submodules: recursive
       - run: git fetch --unshallow origin
       - run: git fetch --prune --all
-      - run: git push --prune https://sakul6499:$GITLAB_TOKEN@gitlab.com/rust-multiplatform/bevy-example-shapes.git +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
+      - run: git push --prune https://sakul6499:$GITLAB_TOKEN@gitlab.com/rust-multiplatform/bevy-template.git +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
         env:
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}

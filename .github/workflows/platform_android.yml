@@ -53,14 +53,9 @@ jobs:
 
       - name: Build
         run: cargo apk build --package platform_android --release
-      # Testing can't be done on iOS.
+      # Testing can't be done on Android.
       # However, we are testing on the `shared` code and other architectures.
 
-      - uses: actions/upload-artifact@v3
-        with:
-          name: "platform_android_debug_multi"
-          path: target/debug/apk/
-          if-no-files-found: error
       - uses: actions/upload-artifact@v3
         with:
           name: "platform_android_release_multi"

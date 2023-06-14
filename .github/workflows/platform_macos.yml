@@ -49,11 +49,6 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: "platform_macos_debug_${{ matrix.target }}"
-          path: target/${{ matrix.target }}/debug/platform_macos
-          if-no-files-found: error
-      - uses: actions/upload-artifact@v3
-        with:
           name: "platform_macos_release_${{ matrix.target }}"
           path: target/${{ matrix.target }}/release/platform_macos
           if-no-files-found: error

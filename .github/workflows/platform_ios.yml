@@ -66,11 +66,6 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: "platform_ios_debug_multi"
-          path: target/xcodegen/platform_ios/build/Build/Products/Debug-iphonesimulator
-          if-no-files-found: error
-      - uses: actions/upload-artifact@v3
-        with:
           name: "platform_ios_release_multi"
           path: target/xcodegen/platform_ios/build/Build/Products/Release-iphonesimulator
           if-no-files-found: error

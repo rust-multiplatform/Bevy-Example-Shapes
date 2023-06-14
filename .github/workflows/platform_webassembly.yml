@@ -35,6 +35,7 @@ jobs:
 
       - name: Build
         run: wasm-pack build platform/webassembly/ --package platform_webassembly
+        
       - uses: actions/upload-artifact@v3
         with:
           name: "platform_webassembly_release"

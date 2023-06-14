@@ -45,11 +45,6 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: "platform_windows_debug_${{ matrix.target }}"
-          path: target/${{ matrix.target }}/debug/platform_windows.exe
-          if-no-files-found: error
-      - uses: actions/upload-artifact@v3
-        with:
           name: "platform_windows_release_${{ matrix.target }}"
           path: target/${{ matrix.target }}/release/platform_windows.exe
           if-no-files-found: error
