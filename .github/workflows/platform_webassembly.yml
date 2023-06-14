@@ -33,15 +33,7 @@ jobs:
       - name: Install WASM-Pack
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
-      - name: Build (Debug)
-        run: wasm-pack build --dev platform/webassembly/ --package platform_webassembly
-      - uses: actions/upload-artifact@v3
-        with:
-          name: "platform_webassembly_debug"
-          path: ./platform/webassembly/pkg
-          if-no-files-found: error
-
-      - name: Build (Release)
+      - name: Build
         run: wasm-pack build platform/webassembly/ --package platform_webassembly
       - uses: actions/upload-artifact@v3
         with:
