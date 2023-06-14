@@ -37,7 +37,7 @@ jobs:
 
       - name: Install Dependencies on Linux
         if: ${{ matrix.os == 'ubuntu-latest' }}
-        run: sudo apt-get install -y build-essential gcc gcc-multilib g++ pkg-config libx11-dev libasound2-dev libudev-dev libwayland-dev libxkbcommon-dev mesa-vulkan-drivers clang
+        run: sudo apt-get update && sudo apt-get install -y build-essential gcc gcc-multilib g++ pkg-config libx11-dev libasound2-dev libudev-dev libwayland-dev libxkbcommon-dev mesa-vulkan-drivers clang
       - name: Install Dependencies on macOS
         if: ${{ matrix.os == 'macos-latest' }}
         run: brew install michaeleisel/zld/zld
