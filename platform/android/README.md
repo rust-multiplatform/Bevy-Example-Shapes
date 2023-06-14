@@ -33,8 +33,8 @@ In this case we have _some_ non-shared/platform-specific code but overall this s
 For Android we can't use the standard Rust-Entrypoint (`src/main.rs ::  fn main() { ... }`), but have to define a library (`src/lib.rs`) and have it have a `pub fn main()` function:
 
 ```rust
-#[cfg_attr(target_os = "android", ndk_glue::main(backtrace = "on"))]
-pub fn main() {
+#[no_mangle]
+fn android_main() {
     // OUR CODE HERE
 }
 
@@ -437,3 +437,14 @@ adb logcat RustStdoutStderr:D *:S
 ```
 
 > Note: to capture app crashes either _first_ launch this command in a shell _or_ relaunch the app after having adb up.
+
+## Update changes
+
+[winit](https://github.com/rust-windowing/winit) has since **version 0.28** switched from [ndk-glue](https://docs.rs/ndk-glue/) to [android-activity](https://docs.rs/android-activity).
+The changes are minimal (see commits [e94cc316fcf02578bddefb24f9e7180f0e570964](https://github.com/rust-multiplatform/Windowing-Template/pull/78/commits/e94cc316fcf02578bddefb24f9e7180f0e570964) to [f78d69d463df7902846f75a5d70796c5a2727ea7](f78d69d463df7902846f75a5d70796c5a2727ea7) for changes made), but there is a single difference in activities now:  
+**You have to choose between two available activities.**  
+The first option is `NativeActivity` and it's the "most native" activity available at the moment.  
+The second option is `GameActivity`, which depends on `AndroidAppCompat` and requires additional tools for Java and Kotlin to work.  
+**In this example we are using `NativeActivity`.**
+Check the `shared/Cargo.toml` to see the feature flag being used.  
+To learn more about this in more details refer to the [Android section at winit's documentation](https://github.com/rust-windowing/winit#android).

@@ -29,8 +29,13 @@ jobs:
           path: target
           key: target-cache
 
+<<<<<<< HEAD
       - name: Install GCC and Bevy dependencies
         run: sudo apt-get install -y build-essential gcc gcc-multilib g++ pkg-config libx11-dev libasound2-dev libudev-dev libwayland-dev libxkbcommon-dev mesa-vulkan-drivers clang
+=======
+      - name: Install GCC and dependencies
+        run: sudo apt-get update && sudo apt-get install -y build-essential gcc gcc-multilib
+>>>>>>> upstream/main
 
       - name: Install Rust
         run: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile minimal -y
@@ -38,17 +43,10 @@ jobs:
       - name: Install target ${{ matrix.target }}
         run: rustup target add ${{ matrix.target }}
 
-      - name: Check
-        run: cargo check --verbose --package platform_linux --target ${{ matrix.target }}
-      - name: Build (Debug)
-        run: cargo build --verbose --package platform_linux --target ${{ matrix.target }}
-      - name: Build (Release)
+      - name: Build
         run: cargo build --verbose --package platform_linux --target ${{ matrix.target }} --release
-      - name: Run Tests (Debug)
-        if: ${{ matrix.target == 'x86_64-unknown-linux-gnu' }} # Testing can only be done on the host architecture. It should work across all architectures though!
-        run: cargo test --verbose --package platform_linux --no-default-features --no-fail-fast --target ${{ matrix.target }}
-        continue-on-error: true
-      - name: Run Tests (Release)
+
+      - name: Run Tests
         if: ${{ matrix.target == 'x86_64-unknown-linux-gnu' }} # Testing can only be done on the host architecture. It should work across all architectures though!
         run: cargo test --verbose --package platform_linux --no-default-features --no-fail-fast --target ${{ matrix.target }} --release
         continue-on-error: true

@@ -51,11 +51,7 @@ jobs:
       - name: Generate Release KeyStore
         run: cd platform/android/.android && echo -e "android\nandroid\n\n\n\n\n\n\nyes" | keytool -genkey -v -keystore release.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000
 
-      - name: Check
-        run: cargo apk check --package platform_android
-      - name: Build (Debug)
-        run: cargo apk build --package platform_android
-      - name: Build (Release)
+      - name: Build
         run: cargo apk build --package platform_android --release
       # Testing can't be done on iOS.
       # However, we are testing on the `shared` code and other architectures.
