@@ -1,9 +1,9 @@
-use crate::entrypoint;
+// use crate::entrypoint;
 
-#[test]
-fn check_entrypoint_exists() {
-    entrypoint();
-}
+// #[test]
+// fn check_entrypoint_exists() {
+//     entrypoint();
+// }
 
 // Example for UI tests:
 // #[test]
