@@ -3,7 +3,7 @@ name = "shared"
 version = "0.1.0"
 edition = "2021"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/rust-multiplatform/Bevy-Example-Shapes.git"
+repository = "https://github.com/rust-multiplatform/Bevy-Template.git"
 
 [features]
 default = ["all-tests"]
@@ -14,11 +14,4 @@ all-tests = ["ui-tests"]
 crate-type = ["cdylib", "staticlib", "rlib"]
 
 [dependencies]
-<<<<<<< HEAD
-bevy = "0.9"
-=======
-winit = "0.28"
-
-[target.'cfg(target_os = "android")'.dependencies]
-winit = { version = "0.28", features = ["android-native-activity"] }
->>>>>>> upstream/main
+bevy = "0.10"

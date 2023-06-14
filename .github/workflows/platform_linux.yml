@@ -29,13 +29,8 @@ jobs:
           path: target
           key: target-cache
 
-<<<<<<< HEAD
       - name: Install GCC and Bevy dependencies
-        run: sudo apt-get install -y build-essential gcc gcc-multilib g++ pkg-config libx11-dev libasound2-dev libudev-dev libwayland-dev libxkbcommon-dev mesa-vulkan-drivers clang
-=======
-      - name: Install GCC and dependencies
-        run: sudo apt-get update && sudo apt-get install -y build-essential gcc gcc-multilib
->>>>>>> upstream/main
+        run: sudo apt-get update && sudo apt-get install -y build-essential gcc gcc-multilib g++ pkg-config libx11-dev libasound2-dev libudev-dev libwayland-dev libxkbcommon-dev mesa-vulkan-drivers clang
 
       - name: Install Rust
         run: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile minimal -y
@@ -51,11 +46,6 @@ jobs:
         run: cargo test --verbose --package platform_linux --no-default-features --no-fail-fast --target ${{ matrix.target }} --release
         continue-on-error: true
 
-      - uses: actions/upload-artifact@v3
-        with:
-          name: "platform_linux_debug_${{ matrix.target }}"
-          path: target/${{ matrix.target }}/debug/platform_linux
-          if-no-files-found: error
       - uses: actions/upload-artifact@v3
         with:
           name: "platform_linux_release_${{ matrix.target }}"

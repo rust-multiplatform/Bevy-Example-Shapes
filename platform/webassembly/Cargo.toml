@@ -3,7 +3,7 @@ name = "platform_webassembly"
 version = "0.1.0"
 edition = "2021"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/rust-multiplatform/Bevy-Example-Shapes.git"
+repository = "https://github.com/rust-multiplatform/Bevy-Template.git"
 
 [features]
 default = ["all-tests"]
@@ -17,11 +17,7 @@ crate-type = ["cdylib", "rlib"]
 # Internal
 shared = { path = "../../shared" }
 # External
-<<<<<<< HEAD
-wasm-bindgen = "0.2.83"
-=======
 wasm-bindgen = "0.2.87"
->>>>>>> upstream/main
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3"
