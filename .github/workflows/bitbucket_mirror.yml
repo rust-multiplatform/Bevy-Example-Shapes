@@ -14,6 +14,6 @@ jobs:
           submodules: recursive
       - run: git fetch --unshallow origin
       - run: git fetch --prune --all
-      - run: git push --prune https://Sakul-Flee:$BITBUCKET_TOKEN@bitbucket.org/rust-multiplatform/bevy-example-shapes.git +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
+      - run: git push --prune https://Sakul-Flee:$BITBUCKET_TOKEN@bitbucket.org/rust-multiplatform/bevy-template.git +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
         env:
           BITBUCKET_TOKEN: ${{ secrets.BITBUCKET_TOKEN }}

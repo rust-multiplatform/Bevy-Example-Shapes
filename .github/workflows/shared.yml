@@ -37,28 +37,17 @@ jobs:
 
       - name: Install Dependencies on Linux
         if: ${{ matrix.os == 'ubuntu-latest' }}
-        run: sudo apt-get install -y build-essential gcc gcc-multilib g++ pkg-config libx11-dev libasound2-dev libudev-dev libwayland-dev libxkbcommon-dev mesa-vulkan-drivers clang
+        run: sudo apt-get update && sudo apt-get install -y build-essential gcc gcc-multilib g++ pkg-config libx11-dev libasound2-dev libudev-dev libwayland-dev libxkbcommon-dev mesa-vulkan-drivers clang
       - name: Install Dependencies on macOS
         if: ${{ matrix.os == 'macos-latest' }}
         run: brew install michaeleisel/zld/zld
 
-      - name: Check
-        run: cargo check --verbose --package shared
-      - name: Build (Debug)
-        run: cargo build --verbose --package shared
-      - name: Build (Release)
+      - name: Build
         run: cargo build --verbose --package shared --release
-      - name: Run Tests (Debug)
-        run: cargo test --verbose --no-default-features --no-fail-fast --package shared
-      - name: Run Tests (Release)
+
+      - name: Tests
         run: cargo test --verbose --no-default-features --no-fail-fast --package shared --release
 
-      - uses: actions/upload-artifact@v3
-        with:
-          name: "shared_debug_${{ matrix.os }}"
-          path: |
-            target/debug/libshare*
-            target/debug/share*
       - uses: actions/upload-artifact@v3
         with:
           name: "shared_release_${{ matrix.os }}"

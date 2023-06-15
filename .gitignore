@@ -13,3 +13,6 @@ pkg/
 # IDEA (except run configurations)
 .idea/*
 !.idea/runConfigurations/
+
+# Android
+platform/android/.android

@@ -31,40 +31,31 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 version = "2022.10"
 
 project {
-
-    buildType(OpenSourceProjects_RustMultiplatform_BevyExampleShapes_Build)
-    buildType(OpenSourceProjects_RustMultiplatform_BevyExampleShapes_Test)
+    buildType(Test)
+    buildType(Build)
 }
 
-object OpenSourceProjects_RustMultiplatform_BevyExampleShapes_Build : BuildType({
+object OpenSourceProjects_RustMultiplatform_BevyTemplate_Build : BuildType({
     id("Build")
     name = "Build"
 
     vcs {
         root(DslContext.settingsRoot)
-    }
+    } 
 
     steps {
-        dockerCommand {
-            name = "Build Docker Image"
-            commandType = build {
-                source = file {
-                    path = ".ci/Dockerfile"
-                }
-                contextDir = ".ci"
-                platform = DockerCommandStep.ImagePlatform.Linux
-                namesAndTags = "bevy_ci_image:latest"
-                commandArgs = "--pull"
-            }
-        }
-        script {
+        step {
             name = "Build"
-            scriptContent = """
-                cargo build
-                cargo build --release
-            """.trimIndent()
-            dockerImage = "bevy_ci_image:latest"
-            dockerImagePlatform = ScriptBuildStep.ImagePlatform.Linux
+            type = "cargo"
+            executionMode = BuildStep.ExecutionMode.RUN_ON_FAILURE
+            param("cargo-build-package", "platform_linux")
+            param("cargo-build-release", "true")
+            param("cargo-test-no-default-features", "true")
+            param("cargo-toolchain", "stable")
+            param("cargo-verbosity", "--verbose")
+            param("cargo-bench-package", "platform_linux")
+            param("cargo-bench-arguments", "--release")
+            param("cargo-command", "build")
         }
     }
 
@@ -79,7 +70,7 @@ object OpenSourceProjects_RustMultiplatform_BevyExampleShapes_Build : BuildType(
     }
 })
 
-object OpenSourceProjects_RustMultiplatform_BevyExampleShapes_Test : BuildType({
+object OpenSourceProjects_RustMultiplatform_BevyTemplate_Test : BuildType({
     id("Test")
     name = "Test"
 
@@ -88,26 +79,17 @@ object OpenSourceProjects_RustMultiplatform_BevyExampleShapes_Test : BuildType({
     }
 
     steps {
-        dockerCommand {
-            name = "Build Docker Image"
-            commandType = build {
-                source = file {
-                    path = ".ci/Dockerfile"
-                }
-                contextDir = ".ci"
-                platform = DockerCommandStep.ImagePlatform.Linux
-                namesAndTags = "bevy_ci_image:latest"
-                commandArgs = "--pull"
-            }
-        }
-        script {
-            name = "Test"
-            scriptContent = """
-                cargo test
-                cargo test --release
-            """.trimIndent()
-            dockerImage = "bevy_ci_image:latest"
-            dockerImagePlatform = ScriptBuildStep.ImagePlatform.Linux
+        step {
+            name = "Tests"
+            type = "cargo"
+            executionMode = BuildStep.ExecutionMode.RUN_ON_FAILURE
+            param("cargo-test-no-fail-fast", "true")
+            param("cargo-test-package", "platform_linux")
+            param("cargo-test-no-default-features", "true")
+            param("cargo-toolchain", "stable")
+            param("cargo-verbosity", "--verbose")
+            param("cargo-test-release", "true")
+            param("cargo-command", "test")
         }
     }
 

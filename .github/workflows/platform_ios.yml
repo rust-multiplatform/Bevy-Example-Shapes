@@ -59,20 +59,11 @@ jobs:
       - name: Diff changes in Cargo.toml
         run: diff platform/ios/Cargo.toml platform/ios/Cargo.toml.original || true
 
-      - name: Check
-        run: cargo xcodebuild check --verbose --package platform_ios
-      - name: Build (Debug)
-        run: cargo xcodebuild build --verbose --package platform_ios
-      - name: Build (Release)
+      - name: Build
         run: cargo xcodebuild build --verbose --package platform_ios --release
       # Testing can't be done on iOS.
       # However, we are testing on the `shared` code and other architectures.
 
-      - uses: actions/upload-artifact@v3
-        with:
-          name: "platform_ios_debug_multi"
-          path: target/xcodegen/platform_ios/build/Build/Products/Debug-iphonesimulator
-          if-no-files-found: error
       - uses: actions/upload-artifact@v3
         with:
           name: "platform_ios_release_multi"

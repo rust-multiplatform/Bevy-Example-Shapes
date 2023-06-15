@@ -18,10 +18,19 @@ shared = { path = "../../shared" }
 
 [package.metadata.ios]
 # Specifies the array of targets to build for.
-build_targets = ["aarch64-apple-ios", "aarch64-apple-ios-sim", "x86_64-apple-ios"]
+build_targets = [
+    "aarch64-apple-ios",
+    "aarch64-apple-ios-sim",
+    "x86_64-apple-ios",
+]
 
 # Specifies the array of dependencies sdk. Empty by default.
-dependencies = ["Security.framework", "UIKit.framework"]
+dependencies = [
+    "Metal.framework",
+    "Security.framework",
+    "UIKit.framework",
+    "AudioToolbox.framework",
+]
 
 # Specifies deployment target. "12" by default.
 deployment_target = "12.0"
@@ -37,7 +46,7 @@ development_team = "SakulFlee"
 
 # Specifies device id and device type.
 device_id = "YOUR DEVICE ID HERE --- CHECK README"
-device_type = "simulator" # or "device".
+device_type = "simulator"                          # or "device".
 
 # Specifies an assets folder.
 assets = ["assets/"]

@@ -1,16 +1,11 @@
 image: "rust:latest"
 
-check:cargo:
-  script:
-    - rustc --version && cargo --version  # Print version info for debugging
-    - cargo check --verbose --package platform_linux
-
 build:cargo:
   script:
-    - rustc --version && cargo --version  # Print version info for debugging
-    - cargo build --verbose --package platform_linux
+    - rustc --version && cargo --version  # Print version info
+    - cargo build --verbose --release --package platform_linux
 
 test:cargo:
   script:
-    - rustc --version && cargo --version  # Print version info for debugging
-    - cargo test --verbose --no-default-features --no-fail-fast --package platform_linux
+    - rustc --version && cargo --version  # Print version info
+    - cargo test --verbose --release --no-default-features --no-fail-fast --package platform_linux

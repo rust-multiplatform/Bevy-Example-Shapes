@@ -39,26 +39,14 @@ jobs:
       - name: Install target ${{ matrix.target }}
         run: rustup target add ${{ matrix.target }}
 
-      - name: Check
-        run: cargo check --verbose --package platform_macos --target ${{ matrix.target }}
-      - name: Build (Debug)
-        run: cargo build --verbose --package platform_macos --target ${{ matrix.target }}
-      - name: Build (Release)
+      - name: Build
         run: cargo build --verbose --package platform_macos --target ${{ matrix.target }} --release
-      - name: Run Tests (Debug)
-        if: ${{ matrix.target == 'x86_64-apple-darwin' }} # Testing can only be done on the host architecture. It should work across all architectures though!
-        run: cargo test --verbose --package platform_macos --no-default-features --no-fail-fast --target ${{ matrix.target }}
-        continue-on-error: true
-      - name: Run Tests (Release)
+
+      - name: Run Tests
         if: ${{ matrix.target == 'x86_64-apple-darwin' }} # Testing can only be done on the host architecture. It should work across all architectures though!
         run: cargo test --verbose --package platform_macos --no-default-features --no-fail-fast --target ${{ matrix.target }} --release
         continue-on-error: true
 
-      - uses: actions/upload-artifact@v3
-        with:
-          name: "platform_macos_debug_${{ matrix.target }}"
-          path: target/${{ matrix.target }}/debug/platform_macos
-          if-no-files-found: error
       - uses: actions/upload-artifact@v3
         with:
           name: "platform_macos_release_${{ matrix.target }}"
