@@ -53,7 +53,7 @@ jobs:
         run: diff platform/ios/Cargo.toml platform/ios/Cargo.toml.original || true
 
       - name: Build
-        run: cd platform/ios && cargo xcodebuild build --release
+        run: cd platform/ios && cargo xcodebuild build
 
       # Testing can't be done on iOS.
       # However, we are testing on the `shared` code and other architectures.
