@@ -3,8 +3,6 @@ name: Upstream Merger
 on:
   push:
     branches: ["main"]
-  pull_request:
-    branches: ["main"]
 
 jobs:
   upstream_merger:
@@ -13,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        repository: [rust-multiplatform/Windowing-Template, rust-multiplatform/SlintUI-Template, rust-multiplatform/Base-Engine-Library, rust-multiplatform/Bevy-Template, rust-multiplatform/Graphical-Engine-Template, rust-multiplatform/Compute-Engine-Template]
+        repository: [rust-multiplatform/Bevy-Example-Shapes]
 
     steps:
       - name: Merge upstream
@@ -43,14 +41,10 @@ jobs:
           echo "> Fetching ..."
           git fetch --all
 
-          echo "> Creating merge branch"
-          git checkout -b upstream || true
-          git switch upstream
-
           echo "> Merging ..."
-          git merge upstream/main origin/upstream || true
+          git merge -s ort -Xours upstream/main origin/main
 
           echo "> Pushing ..."
-          git add . || true
+          git add --all || true
           git commit -m "Upstream merge ($(date +%d.%m.%Y_%H:%M:%S))" || true
           git push origin upstream

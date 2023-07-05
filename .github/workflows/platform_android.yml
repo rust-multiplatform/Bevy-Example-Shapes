@@ -23,13 +23,6 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Cache target/
-        id: target-cache
-        uses: actions/cache@v3
-        with:
-          path: target
-          key: target-cache
-
       - name: Install Rust
         run: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile minimal -y
 
@@ -46,13 +39,12 @@ jobs:
         run: cargo install cargo-apk
 
       # KeyStore Setup
-      - name: Generate Debug KeyStore
-        run: cd platform/android/.android && echo -e "android\nandroid\n\n\n\n\n\n\nyes" | keytool -genkey -v -keystore debug.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000
       - name: Generate Release KeyStore
         run: cd platform/android/.android && echo -e "android\nandroid\n\n\n\n\n\n\nyes" | keytool -genkey -v -keystore release.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000
 
       - name: Build
         run: cargo apk build --package platform_android --release
+
       # Testing can't be done on Android.
       # However, we are testing on the `shared` code and other architectures.
 

@@ -398,7 +398,7 @@
         {
             "label": "Install Android SDK & NDK",
             "type": "shell",
-            "command": "sdkmanager 'platforms;android-30' 'system-images;android-30;google_apis;x86_64' 'platform-tools' 'emulator' 'ndk;24.0.8215888' 'build-tools;33.0.0'",
+            "command": "sdkmanager 'platforms;android-30' 'system-images;android-30;google_apis;x86_64' 'platform-tools' 'emulator' 'ndk-bundle' 'build-tools;34.0.0-rc3'",
             "problemMatcher": []
         },
         {
@@ -440,7 +440,7 @@
             "presentation": {
                 "reveal": "always"
             },
-            "dependsOn":[
+            "dependsOn": [
                 "Build Platform Android (Debug)"
             ],
             "group": "test"
@@ -458,7 +458,7 @@
             "presentation": {
                 "reveal": "always"
             },
-            "dependsOn":[
+            "dependsOn": [
                 "Build Platform Android (Release)"
             ],
             "group": "test"
@@ -476,7 +476,7 @@
             "presentation": {
                 "reveal": "always"
             },
-            "dependsOn":[
+            "dependsOn": [
                 "Build Platform Android (Debug)"
             ],
             "group": "test"
@@ -491,7 +491,7 @@
             "presentation": {
                 "reveal": "always"
             },
-            "dependsOn":[
+            "dependsOn": [
                 "Build Platform Windows (Debug)"
             ],
             "group": "test"
@@ -506,7 +506,7 @@
             "presentation": {
                 "reveal": "always"
             },
-            "dependsOn":[
+            "dependsOn": [
                 "Build Platform Windows (Release)"
             ],
             "group": "test"
@@ -521,7 +521,7 @@
             "presentation": {
                 "reveal": "always"
             },
-            "dependsOn":[
+            "dependsOn": [
                 "Build Platform Linux (Debug)"
             ],
             "group": "test"
@@ -536,7 +536,7 @@
             "presentation": {
                 "reveal": "always"
             },
-            "dependsOn":[
+            "dependsOn": [
                 "Build Platform Linux (Release)"
             ],
             "group": "test"
@@ -551,7 +551,7 @@
             "presentation": {
                 "reveal": "always"
             },
-            "dependsOn":[
+            "dependsOn": [
                 "Build Platform macOS (Debug)"
             ],
             "group": "test"
@@ -566,7 +566,7 @@
             "presentation": {
                 "reveal": "always"
             },
-            "dependsOn":[
+            "dependsOn": [
                 "Build Platform macOS (Release)"
             ],
             "group": "test"

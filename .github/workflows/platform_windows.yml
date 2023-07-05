@@ -22,13 +22,6 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Cache target/
-        id: target-cache
-        uses: actions/cache@v3
-        with:
-          path: target
-          key: target-cache
-
       - name: Install Rust
         run: Invoke-WebRequest https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe -OutFile rustup-init.exe; ./rustup-init.exe --default-toolchain stable --profile minimal -y
 

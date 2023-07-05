@@ -11,32 +11,17 @@ env:
 
 jobs:
   clippy:
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
         with:
           submodules: recursive
 
-      - name: Cache target/
-        id: target-cache
-        uses: actions/cache@v3
-        with:
-          path: target
-          key: target-cache
-
-      - name: Install Rust on Windows
-        if: ${{ matrix.os == 'windows-latest' }}
-        run: Invoke-WebRequest https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe -OutFile rustup-init.exe; ./rustup-init.exe --default-toolchain stable --profile minimal -y
       - name: Install Rust on UNIX (Linux & macOS)
-        if: ${{ matrix.os != 'windows-latest' }}
         run: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile minimal -y
 
       - name: Install Dependencies on Linux
-        if: ${{ matrix.os == 'ubuntu-latest' }}
         run: sudo apt-get update && sudo apt-get install -y build-essential gcc gcc-multilib g++ pkg-config libx11-dev libasound2-dev libudev-dev libwayland-dev libxkbcommon-dev mesa-vulkan-drivers clang
 
       - name: Install Clippy

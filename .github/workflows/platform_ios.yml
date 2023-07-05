@@ -23,13 +23,6 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Cache target/
-        id: target-cache
-        uses: actions/cache@v3
-        with:
-          path: target
-          key: target-cache
-
       - name: Install Rust
         run: curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable --profile minimal -y
 
@@ -60,7 +53,8 @@ jobs:
         run: diff platform/ios/Cargo.toml platform/ios/Cargo.toml.original || true
 
       - name: Build
-        run: cargo xcodebuild build --verbose --package platform_ios --release
+        run: cd platform/ios && cargo xcodebuild build --verbose --package platform_ios --release
+
       # Testing can't be done on iOS.
       # However, we are testing on the `shared` code and other architectures.
 

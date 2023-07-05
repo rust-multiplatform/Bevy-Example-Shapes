@@ -1,4 +1,12 @@
-# Rust Multi-Platform - Bevy Example: Shapes
+# Rust Multi-Platform: Bevy Template
+
+[![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_android.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_android.yml)
+[![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_ios.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_ios.yml)
+[![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_linux.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_linux.yml)
+[![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_macos.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_macos.yml)
+[![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_windows.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_windows.yml)
+
+> ⚠️ THIS IS A TEMPLATE. ⚠️
 
 This project is supported by the following platforms:
 
@@ -157,105 +165,23 @@ Additionally, often we have to `source` the profile changes. Something like:
 source $HOME/.cargo/env
 ```
 
-Additionally we have templates for other CI platforms.
-Please note that some platforms are just a basic example on how to build part of this project, e.g. building only the `platform_linux` package.
-This is done to save on build costs/minutes.
+Furthermore, we have templates for many other CI platforms if you prefer those.
 
-> Please note, that if just one CI platform is failing, it is most likely linked to a plan or build credit issue on said platform.
+> Please note, that some CI platforms only showcase how to build a single platform (such as `platform_linux`). This is done to save on costs and time.
+> 
+> Furthermore, that if just one CI platform is failing, it is most likely linked to a plan or build credit issue on said platform.
 > GitHub Actions is **NOT** limited for open source repositories.
 > If GitHub Actions succeed, all other CI platforms _should_ succeed as well.
 
-### CI Platform: GitHub Actions
+List of CI Examples/Templates:
 
-[![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_android.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_android.yml)
-[![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_ios.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_ios.yml)
-[![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_linux.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_linux.yml)
-[![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_macos.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_macos.yml)
-[![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_windows.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/platform_windows.yml)
-[![Rust](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/shared.yml/badge.svg)](https://github.com/rust-multiplatform/Bevy-Example-Shapes/actions/workflows/shared.yml)
-
-On GitHub Actions we have a workflow file per package (platforms & shared).
-Each hast their own badge.
-
-### CI Platform: Azure DevOps
-
-[![Build Status](https://dev.azure.com/Rust-Multiplatform/Bevy%20Example%20Shapes/_apis/build/status/Bevy%20Example%20Shapes?branchName=main)](https://dev.azure.com/Rust-Multiplatform/Bevy%20Example%20Shapes/_build/latest?definitionId=1&branchName=main)
-
-Azure DevOps is an amazing platform which includes not only CI/CDs (pipelines), but you can host your Git repository there too, do planning, and much more.
-The Azure Pipelines are surprisingly extensive and feature rich, next to GitHub definitely a good choice!
-
-We also do build for all platforms, however please note that you either have to pay for a subscription (might be included with an Visual Studio/MSDN subscription!) or, if applicable, apply for a shared pipeline runner.
-This is possible for not only public, but also private projects.
-In fact I do have private projects on there.
-
-### CI Platform: CircleCI
-
-On CircleCI we only support the linux platform do to restrictions with dependencies.  
-In theory, it's possible to build for every platform but is far outside of this projects scope.
-
-[![CircleCI](https://circleci.com/gh/rust-multiplatform/Bevy-Example-Shapes/tree/main.svg?style=svg)](https://circleci.com/gh/rust-multiplatform/Bevy-Example-Shapes/tree/main)
-
-> Note that a failure here can also mean we run out of credits. Happens too often unfortunately!
-
-### CI Platform: Travis
-
-[![Build Status](https://app.travis-ci.com/rust-multiplatform/Bevy-Example-Shapes.svg?branch=main)](https://app.travis-ci.com/rust-multiplatform/Bevy-Example-Shapes)
-
-On Travis we only build for Windows, macOS and Linux.
-Android and iOS _would_ be possible, however it requires a lot more work.
-The Android SDK and iOS SDK must be installed, xcode tool, cross compilers, etc.
-
-Additionally, we want to save on build credits here.
-
-> Note a failure or unknown status may be linked to used up credits and/or plan.
-
-### CI Platform: GitLab CI
-
-To use GitLab CI we mirror our repository from GitHub to GitLab.
-
-Currently, we are only building `platform_linux`. Other platforms should be possible.
-
-[![pipeline status](https://gitlab.com/rust-multiplatform/bevy-example-shapes/badges/main/pipeline.svg)](https://gitlab.com/rust-multiplatform/bevy-example-shapes/-/commits/main)
-
-### CI Platform: BitBucket Pipeline
-
-Unfortunately, BitBucket Pipelines don't have status badges.
-
-The pipelines are available at: [BitBucket Mirror](https://bitbucket.org/rust-multiplatform/bevy-example-shapes/)
-
-### CI Platform: TeamCity
-
-| Pipeline | Status Badge                                                                                                                                                      |
-| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Build    | ![TeamCity build status](https://teamcity.jetbrains.com/app/rest/builds/buildType:id:OpenSourceProjects_RustMultiplatform_BevyExampleShapes_Build/statusIcon.svg) |
-| Test     | ![TeamCity test status](https://teamcity.jetbrains.com/app/rest/builds/buildType:id:OpenSourceProjects_RustMultiplatform_BevyExampleShapes_Test/statusIcon.svg)   |
-
-To use [TeamCity](https://www.jetbrains.com/teamcity/) you either have to host your own Server, subscribe for a hosted (TeamCity Cloud) server or apply for your [OSS project being added for free](https://blog.jetbrains.com/teamcity/2016/10/hosted-teamcity-for-open-source-a-new-home/).
-
-Unfortunately, TeamCity depends highly on hosted Agents and for OSS only Linux (ubuntu) is available.
-Our pipeline only builds the `platform_linux` package (and internally `shared`).
-Building other platforms is possible (Windows: Cross-Compilation with MinGW, WebAssembly & Android: "Natively" supported), but requires a more complicated setup.
-
-Furthermore, the platforms macOS and iOS can't be build without having your own Agent running on a Mac.
-There is the [Docker-OSX](https://github.com/sickcodes/Docker-OSX) project which makes it possible to run macOS under Docker. Hard to setup and requires a lot of resources for "just building" an app.
-
-Windows builds would also be much easier if we'd have an agent for it.
-
-### CI Platform: AppVeyor
-
-[![Build status](https://ci.appveyor.com/api/projects/status/nsffumoc868yqsrj/branch/main?svg=true)](https://ci.appveyor.com/project/Sakul6499/bevy-example-shapes/branch/main)
-
-Simple pipeline to showcase the usage of Rust on AppVeyor.  
-Linux only currently, but [Windows](https://www.appveyor.com/docs/windows-images-software/) and [macOS](https://www.appveyor.com/docs/macos-images-software/) are possible.
-
-### CI Platform: Jenkins
-
-[![Build Status](https://jenkins.sakul-flee.de/buildStatus/icon?job=github_rust_multiplatform%2FBevy-Example-Shapes%2Fmain)](https://jenkins.sakul-flee.de/job/github_rust_multiplatform/job/Bevy-Example-Shapes/job/main/)
-
-[Jenkins](https://www.jenkins.io/) is another multi-purpose self-hosted CI platform.
-
-The configuration file can be found under `.jenkins/Jenkinsfile` and includes both: A Docker build version using the official [Rust Docker Image](https://hub.docker.com/_/rust) and a native installation (local Agent with [Rustup.rs](https://rustup.rs/) installed).  
-**You won't need both**, exclude whatever configuration you won't need.
+- [Rust-Multiplatform / CircleCI Example](https://github.com/rust-multiplatform/CI-Example-CircleCI)
+- [Rust Multiplatform / TeamCity Example](https://github.com/rust-multiplatform/CI-Example-TeamCity)
+- [Rust Multiplatform / GitLab Example](https://github.com/rust-multiplatform/CI-Example-GitLab-CI)
+- [Rust Multiplatform / BItBucket Example](https://github.com/rust-multiplatform/CI-Example-BitBucket-Pipelines)
+- [Rust Multiplatform / Travis Example](https://github.com/rust-multiplatform/CI-Example-Travis)
+- [Rust Multiplatform / Azure DevOps Example](https://github.com/rust-multiplatform/CI-Example-Azure-Pipelines)
+- [Rust Multiplatform / AppVeyor Example](https://github.com/rust-multiplatform/CI-Example-AppVeyor)
 
 ## Coverage
 
