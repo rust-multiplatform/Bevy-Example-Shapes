@@ -20,7 +20,7 @@ shared = { path = "../../shared" }
 jni = "0.21"
 libc = "0.2"
 log = "0.4"
-ndk = { version = "0.7", features = ["api-level-23"] }
+ndk = { version = "0.8", features = ["api-level-23"] }
 ndk-context = "0.1"
 android_logger = "0.13"
 android-activity = { version = "0.4", features = ["native-activity"] }
