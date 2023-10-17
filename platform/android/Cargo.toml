@@ -23,7 +23,7 @@ log = "0.4"
 ndk = { version = "0.7", features = ["api-level-23"] }
 ndk-context = "0.1"
 android_logger = "0.13"
-android-activity = { version = "0.4", features = ["native-activity"] }
+android-activity = { version = "0.5", features = ["native-activity"] }
 
 [package.metadata.android]
 # Specifies the package property of the manifest.
