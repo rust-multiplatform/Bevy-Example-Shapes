@@ -55,7 +55,7 @@ jobs:
       # Testing can't be done on Android.
       # However, we are testing on the `shared` code and other architectures.
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: "platform_android_release_multi"
           path: target/release/apk/
