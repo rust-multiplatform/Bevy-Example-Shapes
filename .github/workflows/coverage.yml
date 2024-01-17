@@ -16,14 +16,14 @@ jobs:
     steps:
       - name: Cache target/
         id: target-cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: target
           key: shared-${{ runner.os }}-target
 
       - name: Cache Cargo-Home (compiled/installed binaries)
         id: cargo-coverage-home
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: /home/runner/.cargo
           key: cargo-coverage-home

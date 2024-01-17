@@ -23,7 +23,7 @@ jobs:
 
       - name: Cache target/
         id: target-cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: target
           key: platform_webassembly-${{ runner.os }}-target
