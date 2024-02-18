@@ -46,12 +46,12 @@ jobs:
         run: cargo test --verbose --package platform_linux --no-default-features --no-fail-fast --target ${{ matrix.target }} --release
         continue-on-error: true
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: "platform_linux_debug_${{ matrix.target }}"
           path: target/${{ matrix.target }}/debug/platform_linux
           if-no-files-found: error
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: "platform_linux_release_${{ matrix.target }}"
           path: target/${{ matrix.target }}/release/platform_linux
