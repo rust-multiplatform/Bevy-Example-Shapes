@@ -46,13 +46,13 @@ jobs:
       - name: Run Tests (Release)
         run: cargo test --verbose --no-default-features --no-fail-fast --package shared --release
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: "shared_debug_${{ matrix.os }}"
           path: |
             target/debug/libshare*
             target/debug/share*
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: "shared_release_${{ matrix.os }}"
           path: |
